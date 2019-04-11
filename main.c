@@ -28,7 +28,7 @@
 int main(){
   // key array for substitution, if program finds an A, it will subst it with the [0] element of this array, B will become [1] element, and so on
   //              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-  char key[26] = {'A', 'e', 'i', 'D', 'u', 't', 'G', 'h', 'I', 's', 'K', 'L', 'M', 'a', 'O', 'P', 'g', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'o', 'Z'};
+  char key[26] = {'k', 'e', 'i', 'j', 'u', 't', 'v', 'h', 'p', 's', 'n', 'c', 'f', 'a', 'm', 'w', 'g', 'd', 's', 't', 'u', 'y', 'b', 'r', 'o', 'l'};
   char test[738]; // initialise array of char variables, with the same number of
                  // elements as the amount of characters in the Test_input2 file
   
