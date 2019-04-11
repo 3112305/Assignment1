@@ -23,7 +23,69 @@
  */
 
 #include <stdio.h>
+// sub and rotation cypher below, attempting a menu system etc now
+int main(){
+    
+    //initialise main variables;
+    int i = 0;
+    int progSelection1;
+    int progSelection2;
+    //int progSelection3;
+    
+    
+    while((progSelection1!=1)&&(progSelection1!=2)){
+        printf("Enter an integer for one of the following options:\n  1: Cypher message\n  2: Decypher message\n");
+        scanf("%d", &progSelection1);
+        if((progSelection1!=1)&&(progSelection1!=2)){
+            printf("\n\nInvalid input, try again.\n");
+        }
+    }
+    
+    if(progSelection1 == 1){// Cypher
+       printf("\n*****\nCypher message selected.\n");
+       while((progSelection2!=1)&&(progSelection2!=2)){
+          printf("Enter an integer for one of the following options:\n  1: Rotation cypher with key\n  2: Substitution cypher with key\n");
+          scanf("%d", &progSelection2);
+          if((progSelection2!=1)&&(progSelection2!=2)){
+             printf("\n\nInvalid input, try again.\n");
+          }
+       }
+
+        
+        
+    }
+    
+    if(progSelection1 == 2){// Decypher
+       printf("\n*****\nDecypher message selected.\n");
+       while((progSelection2!=1)&&(progSelection2!=2)&&(progSelection2!=3)&&(progSelection2!=4)){
+          printf("Enter an integer for one of the following options:\n  1: Rotation decypher with key\n  2: Rotation decypher without key\n  3: Rotation decypher with key\n  4: Rotation decypher without key\n");
+          scanf("%d", &progSelection2);
+          if((progSelection2!=1)&&(progSelection2!=2)){
+             printf("\n\nInvalid input, try again.\n");
+          }
+       } 
+        
+    }
+    printf("\n\nEND\n");
+    
+  /*  
+    start:do{
+        printf("Enter an integer for one of the following options:\n  1: Cypher\n  2: Decypher\n");
+        scanf("%d", &progSelection);
+        if((progSelection!=1)||(progSelection!=2)){
+            goto start;
+        }
+        i++;
+    }*/
+    
+
+}
+
+
+
+
 // original rotation cypher code at bottom, trying sub cypher now
+/*
 
 int main(){
   // key array for substitution, if program finds an A, it will subst it with the [0] element of this array, B will become [1] element, and so on
@@ -64,7 +126,7 @@ int main(){
   return 0;
 }
 
-
+*/
 
 
 /*
