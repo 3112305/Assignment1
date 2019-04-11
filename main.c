@@ -23,19 +23,73 @@
  */
 
 #include <stdio.h>
+// original rotation cypher code at bottom, trying sub cypher now
 
 int main(){
 
-  
-  char test[41]; // initialise array of char variables, with the same number of
+  char key[26] = {'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A'};
+  char test[27]; // initialise array of char variables, with the same number of
                  // elements as the amount of characters in the Test_input2 file
   
   int i; // indexing integer for scanning/printing the characters from Test_input2 file
-  int key = 7;// variable for the key for rotation cypher.
+  int k; // indexing integer for key increments
+  int x;
+  //new key will be an array of 26 letters, need to turn test[i] into the key[i],
+  //maybe with a 27 case switch statement?? probably easier ways...
+  
+  //int key = 19;// variable for the key for rotation cypher.
   //int key = 19;//after pasting the key = 7 encrypted message into the Test_input2 file, this key = 19 decrypts it.
   
   
-  for (i = 0; i <= 41; i++){ // for loop scans and prints the letters of the file one at a time
+  for (i = 0; i <= 27; i++){ // for loop scans and prints the letters of the file one at a time
+      scanf("%c", &test[i]);
+      
+      
+      if((test[i]>=97)&&(test[i]<=122)){//convert any lower case to upper case first to save fucking around with code.
+         test[i] = test[i]-32;
+      }
+      
+      if((test[i]>=65)&&(test[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
+                                       // skips non-alphabet characters 
+         for(k=65;k<=90;k++){
+             if (test[i]==k){        // this should check through the alphabet to find what letter is in test[i]
+                x = (int)k;
+                x = x-65;
+                
+ //falling down here//k=k-65;           // then it redefines k to be in the range of the key array
+                
+             //    test[i] = key[k]; // then it reassignes the letter to its key letter.
+                printf("%c",key[x]);
+             } 
+             
+         }
+//         printf(".");
+      }
+      
+      
+      printf("%c", test[i]);
+                 
+  }
+  
+  return 0;
+}
+
+
+
+
+/*
+int main(){
+
+  
+  char test[738]; // initialise array of char variables, with the same number of
+                 // elements as the amount of characters in the Test_input2 file
+  
+  int i; // indexing integer for scanning/printing the characters from Test_input2 file
+  int key = 19;// variable for the key for rotation cypher.
+  //int key = 19;//after pasting the key = 7 encrypted message into the Test_input2 file, this key = 19 decrypts it.
+  
+  
+  for (i = 0; i <= 738; i++){ // for loop scans and prints the letters of the file one at a time
       scanf("%c", &test[i]);
       
       if((test[i]>=65)&&(test[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
@@ -62,10 +116,10 @@ int main(){
          test[i] = test[i]+32;
          
       }
-      astest = (int)test[i];
       printf("%c", test[i]);
                  
   }
   
   return 0;
 }
+*/
