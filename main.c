@@ -28,15 +28,15 @@
 int main(){
   // key array for substitution, if program finds an A, it will subst it with the [0] element of this array, B will become [1] element, and so on
   //              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
-  char key[26] = {'k', 'e', 'i', 'j', 'u', 't', 'v', 'h', 'p', 's', 'n', 'c', 'f', 'a', 'm', 'w', 'g', 'd', 's', 't', 'u', 'y', 'b', 'r', 'o', 'l'};
-  char test[738]; // initialise array of char variables, with the same number of
+  char key[26] = {'k', 'e', 'i', 'D', 'u', 't', 'v', 'h', 'p', 's', 'n', 'c', 'f', 'a', 'm', 'w', 'g', 'd', 'S', 'T', 'x', 'y', 'b', 'r', 'o', 'l'};
+  char test[216]; // initialise array of char variables, with the same number of
                  // elements as the amount of characters in the Test_input2 file
   
   int i; // indexing integer for scanning/printing the characters from Test_input2 file
   int k; // indexing integer for letter identification
   int x; // integer for substituting letters assigned in the key
   
-  for (i = 0; i <= 737; i++){ // for loop scans letter from input file, then applies substiution
+  for (i = 0; i <= 216; i++){ // for loop scans letter from input file, then applies substiution
       scanf("%c", &test[i]);
 
       if((test[i]>=97)&&(test[i]<=122)){//convert any lower case to upper case first to save fucking around with code.
