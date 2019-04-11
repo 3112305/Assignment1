@@ -1,6 +1,6 @@
 /* EENG1003 Programming Assignment 1, Oliver Teiwsen
  * Text encryption/decryption using rotation cypher, and substitution cypher
- * 
+ * ddd
  * work in progress, a lot of these lines of code will be put into
  * seperate functions to make the program flow easier to read.
  *
@@ -15,36 +15,92 @@
  *  having to specify the length of the array to be the amount of characters
  *  in the file.
  * 
- * -implement substitution cypher, which directly maps one letter to another 
- *  rather than adding ascii values
+ * - improve on substitution cypher
+ *
  * -tidy up code into functions for rotational encryption/decryption,
  *  and substitution encryption/decryption
  *
  */
 
 #include <stdio.h>
+// sub and rotation cypher below, attempting a menu system etc now
+int main(){
+    
+    //initialise main variables;
+    int i = 0;
+    int progSelection1;
+    int progSelection2;
+    //int progSelection3;
+    
+    
+    while((progSelection1!=1)&&(progSelection1!=2)){
+        printf("Enter an integer for one of the following options:\n  1: Cypher message\n  2: Decypher message\n");
+        scanf("%d", &progSelection1);
+        if((progSelection1!=1)&&(progSelection1!=2)){
+            printf("\n\nInvalid input, try again.\n");
+        }
+    }
+    
+    if(progSelection1 == 1){// Cypher
+       printf("\n*****\nCypher message selected.\n");
+       while((progSelection2!=1)&&(progSelection2!=2)){
+          printf("Enter an integer for one of the following options:\n  1: Rotation cypher with key\n  2: Substitution cypher with key\n");
+          scanf("%d", &progSelection2);
+          if((progSelection2!=1)&&(progSelection2!=2)){
+             printf("\n\nInvalid input, try again.\n");
+          }
+       }
+
+        
+        
+    }
+    
+    if(progSelection1 == 2){// Decypher
+       printf("\n*****\nDecypher message selected.\n");
+       while((progSelection2!=1)&&(progSelection2!=2)&&(progSelection2!=3)&&(progSelection2!=4)){
+          printf("Enter an integer for one of the following options:\n  1: Rotation decypher with key\n  2: Rotation decypher without key\n  3: Rotation decypher with key\n  4: Rotation decypher without key\n");
+          scanf("%d", &progSelection2);
+          if((progSelection2!=1)&&(progSelection2!=2)){
+             printf("\n\nInvalid input, try again.\n");
+          }
+       } 
+        
+    }
+    printf("\n\nEND\n");
+    
+  /*  
+    start:do{
+        printf("Enter an integer for one of the following options:\n  1: Cypher\n  2: Decypher\n");
+        scanf("%d", &progSelection);
+        if((progSelection!=1)||(progSelection!=2)){
+            goto start;
+        }
+        i++;
+    }*/
+    
+
+}
+
+
+
+
 // original rotation cypher code at bottom, trying sub cypher now
+/*
 
 int main(){
-
-  char key[26] = {'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'A'};
-  char test[27]; // initialise array of char variables, with the same number of
+  // key array for substitution, if program finds an A, it will subst it with the [0] element of this array, B will become [1] element, and so on
+  //              'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+  char key[26] = {'k', 'e', 'i', 'D', 'u', 't', 'v', 'h', 'p', 's', 'n', 'c', 'f', 'a', 'm', 'w', 'g', 'd', 'S', 'T', 'x', 'y', 'b', 'r', 'o', 'l'};
+  char test[216]; // initialise array of char variables, with the same number of
                  // elements as the amount of characters in the Test_input2 file
   
   int i; // indexing integer for scanning/printing the characters from Test_input2 file
-  int k; // indexing integer for key increments
-  int x;
-  //new key will be an array of 26 letters, need to turn test[i] into the key[i],
-  //maybe with a 27 case switch statement?? probably easier ways...
+  int k; // indexing integer for letter identification
+  int x; // integer for substituting letters assigned in the key
   
-  //int key = 19;// variable for the key for rotation cypher.
-  //int key = 19;//after pasting the key = 7 encrypted message into the Test_input2 file, this key = 19 decrypts it.
-  
-  
-  for (i = 0; i <= 27; i++){ // for loop scans and prints the letters of the file one at a time
+  for (i = 0; i <= 216; i++){ // for loop scans letter from input file, then applies substiution
       scanf("%c", &test[i]);
-      
-      
+
       if((test[i]>=97)&&(test[i]<=122)){//convert any lower case to upper case first to save fucking around with code.
          test[i] = test[i]-32;
       }
@@ -52,29 +108,25 @@ int main(){
       if((test[i]>=65)&&(test[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
                                        // skips non-alphabet characters 
          for(k=65;k<=90;k++){
-             if (test[i]==k){        // this should check through the alphabet to find what letter is in test[i]
-                x = (int)k;
-                x = x-65;
-                
- //falling down here//k=k-65;           // then it redefines k to be in the range of the key array
-                
-             //    test[i] = key[k]; // then it reassignes the letter to its key letter.
+             if (test[i]==k){        
+                x = k-65;
                 printf("%c",key[x]);
              } 
-             
          }
-//         printf(".");
       }
+      if((test[i]<65)||(test[i]>90)){ // prints non-alphabet characters
+          printf("%c", test[i]);
+      } 
       
       
-      printf("%c", test[i]);
+      //printf("%c", test[i]);  
                  
   }
   
   return 0;
 }
 
-
+*/
 
 
 /*
