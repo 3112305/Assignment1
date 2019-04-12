@@ -26,8 +26,16 @@
 // sub and rotation cypher below, attempting a menu system etc now
 int main(){
     
+    //function prototypes  return_type name(arguments);
+    int rotCyph(void);//rotational cypher function prototype, returns integer key
+    char subCyph(void);//substitution cypher function prototype
+    void rotDecyphKey(void);//rotational decypher with key function prototype
+    int rotDecyphNoKey(void);//rotational decypher without key function prototype
+    void subDecyphKey(void);//substitution decypher with key function prototype
+    char subDecyphNoKey(void);//substitution cypher function prototype
+    
     //initialise main variables;
-    int i = 0;
+    //int i = 0;
     int progSelection1;
     int progSelection2;
     //int progSelection3;
@@ -53,7 +61,7 @@ int main(){
           }
        }
        if(progSelection2 == 1){
-           //Call RotCyph Function, hopefully running its own while loop
+           rotCyph();
            //does it need to return anything?
        }
        if(progSelection2 == 2){
@@ -84,11 +92,56 @@ int main(){
            //SubDecyphKey
        }
        if(progSelection2 == 4){
-           /SubDecyphNoKey
+           //SubDecyphNoKey
        }
         
     }
     printf("\n\nEND\n");
+    
+}
+
+int rotCyph(void){
+    //1. get message to cypher (file I/O later)
+    //2. ask for key, or generate random key
+    //3. cypher message, (file I/O later)
+    //4. give confirmation, and key.
+    
+    char message[50];
+    int key;
+    //starting with direct input of message
+    printf("Enter the message to be decrypted:\n");
+    scanf("%s", &message[0]);
+    printf("Enter the desired integer key to be used as the cypher key (range 1-25):\n");
+    scanf("%d", &key);
+    
+    int i; // indexing integer for scanning/printing the characters from Test_input2 file
+    for (i = 0; i <= 50; i++){ // for loop scans and prints the letters of the file one at a time
+      //letter = test[i]);
+      
+      if((message[i]>=65)&&(message[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
+                                        // only adds 1 if it is, then moves onto printing.
+      
+         message[i] = message[i]+key; // this adds the value if key to the ascii value of each letter before printing.
+                                                            
+         if(message[i]>90){
+            message[i] = message[i]-26;
+         }                     
+      }
+      
+      if((message[i]>=97)&&(message[i]<=122)){//same as above if statement, but for a-z range
+         message[i] = message[i]-32;  // the commented-out code above was pushing letters in the a-z range to strange values,
+         message[i] = message[i]+key; // these few lines first converts letters in the a-z range to A-Z, by subtracting 32 
+                                // then adds the key before converting back to the a-z range by re-adding 32.
+         if(message[i]>90){
+            message[i] = message[i]-26;
+         }
+         message[i] = message[i]+32;
+         
+      }
+      printf("%c", message[i]);
+                 
+  }
+  return 0;
     
 }
 
@@ -186,3 +239,4 @@ int main(){
   return 0;
 }
 */
+
