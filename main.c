@@ -110,7 +110,8 @@ int rotCyph(void){
     int key;
     //starting with direct input of message
     printf("Enter the message to be decrypted:\n");
-    scanf("%s", &message[0]);
+    //scanf("%s", &message);
+    //scanf("%[^\n]s", message); <-- doesn't work, maybe getline() or something?
     printf("Enter the desired integer key to be used as the cypher key (range 1-25):\n");
     scanf("%d", &key);
     
