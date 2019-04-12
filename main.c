@@ -13,7 +13,7 @@
  *  of 0 to 26
  * -implement proper file i/o, including reading to end of file rather than
  *  having to specify the length of the array to be the amount of characters
- *  in the file.
+ *  in the file.n
  * 
  * - improve on substitution cypher
  *
@@ -39,7 +39,9 @@ int main(){
         if((progSelection1!=1)&&(progSelection1!=2)){
             printf("\n\nInvalid input, try again.\n");
         }
+        
     }
+    
     
     if(progSelection1 == 1){// Cypher
        printf("\n*****\nCypher message selected.\n");
@@ -50,35 +52,44 @@ int main(){
              printf("\n\nInvalid input, try again.\n");
           }
        }
+       if(progSelection2 == 1){
+           //Call RotCyph Function, hopefully running its own while loop
+           //does it need to return anything?
+       }
+       if(progSelection2 == 2){
+           //Call SubCyph Function, hopefully running its own while loop
+           //does it need to return anything?
+       }
 
-        
-        
+       // once the above code is done, the program should skip the remaining code as progSelection is 1,  
+       // maybe print from file to prove the cypher worked
     }
     
     if(progSelection1 == 2){// Decypher
        printf("\n*****\nDecypher message selected.\n");
        while((progSelection2!=1)&&(progSelection2!=2)&&(progSelection2!=3)&&(progSelection2!=4)){
-          printf("Enter an integer for one of the following options:\n  1: Rotation decypher with key\n  2: Rotation decypher without key\n  3: Rotation decypher with key\n  4: Rotation decypher without key\n");
+          printf("Enter an integer for one of the following options:\n  1: Rotation decypher with key\n  2: Rotation decypher without key\n  3: Substitution decypher with key\n  4: Substitution decypher without key\n");
           scanf("%d", &progSelection2);
-          if((progSelection2!=1)&&(progSelection2!=2)){
+          if((progSelection2 < 1)||(progSelection2 > 4)){
              printf("\n\nInvalid input, try again.\n");
           }
-       } 
+       }
+       if(progSelection2 == 1){
+           //RotDecyphKey
+       }
+       if(progSelection2 == 2){
+           //RotDecyphNoKey
+       }
+       if(progSelection2 == 3){
+           //SubDecyphKey
+       }
+       if(progSelection2 == 4){
+           /SubDecyphNoKey
+       }
         
     }
     printf("\n\nEND\n");
     
-  /*  
-    start:do{
-        printf("Enter an integer for one of the following options:\n  1: Cypher\n  2: Decypher\n");
-        scanf("%d", &progSelection);
-        if((progSelection!=1)||(progSelection!=2)){
-            goto start;
-        }
-        i++;
-    }*/
-    
-
 }
 
 
