@@ -101,7 +101,7 @@ int main(){
 }
 
 int rotCyph(void){
-    //1. get message to cypher (file I/O later)
+    //1. get message to cypher (file I/O later) maybe first because getting a whole line is a pain
     //2. ask for key, or generate random key
     //3. cypher message, (file I/O later)
     //4. give confirmation, and key.
