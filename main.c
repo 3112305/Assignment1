@@ -1,5 +1,5 @@
 /* EENG1003 Programming Assignment 1, Oliver Teiwsen
- * Text encryption/decryption using rotation cypher, and substitution cypher
+ * Text encryption/decryption using rotation cipher, and substitution cipher
  * ddd
  * work in progress, a lot of these lines of code will be put into
  * seperate functions to make the program flow easier to read.
@@ -15,7 +15,7 @@
  *  having to specify the length of the array to be the amount of characters
  *  in the file.n
  * 
- * - improve on substitution cypher
+ * - improve on substitution cipher
  *
  * -tidy up code into functions for rotational encryption/decryption,
  *  and substitution encryption/decryption
@@ -23,16 +23,16 @@
  */
 
 #include <stdio.h>
-// sub and rotation cypher below, attempting a menu system etc now
+// sub and rotation cipher below, attempting a menu system etc now
 int main(){
     
     //function prototypes  return_type name(arguments);
-    int rotCyph(void);//rotational cypher function prototype, returns integer key
-    char subCyph(void);//substitution cypher function prototype
-    void rotDecyphKey(void);//rotational decypher with key function prototype
-    int rotDecyphNoKey(void);//rotational decypher without key function prototype
-    void subDecyphKey(void);//substitution decypher with key function prototype
-    char subDecyphNoKey(void);//substitution cypher function prototype
+    int rotCiph(void);//rotational cipher function prototype, returns integer key
+    char subCiph(void);//substitution cipher function prototype
+    void rotDeciphKey(void);//rotational decipher with key function prototype
+    int rotDeciphNoKey(void);//rotational decipher without key function prototype
+    void subDeciphKey(void);//substitution decipher with key function prototype
+    char subDeciphNoKey(void);//substitution cipher function prototype
     
     //initialise main variables;
     //int i = 0;
@@ -42,7 +42,7 @@ int main(){
     
     
     while((progSelection1!=1)&&(progSelection1!=2)){
-        printf("Enter an integer for one of the following options:\n  1: Cypher message\n  2: Decypher message\n");
+        printf("Enter an integer for one of the following options:\n  1: Cipher message\n  2: Decipher message\n");
         scanf("%d", &progSelection1);
         if((progSelection1!=1)&&(progSelection1!=2)){
             printf("\n\nInvalid input, try again.\n");
@@ -51,48 +51,48 @@ int main(){
     }
     
     
-    if(progSelection1 == 1){// Cypher
-       printf("\n*****\nCypher message selected.\n");
+    if(progSelection1 == 1){// Cipher
+       printf("\n*****\nCipher message selected.\n");
        while((progSelection2!=1)&&(progSelection2!=2)){
-          printf("Enter an integer for one of the following options:\n  1: Rotation cypher with key\n  2: Substitution cypher with key\n");
+          printf("Enter an integer for one of the following options:\n  1: Rotation cipher with key\n  2: Substitution cipher with key\n");
           scanf("%d", &progSelection2);
           if((progSelection2!=1)&&(progSelection2!=2)){
              printf("\n\nInvalid input, try again.\n");
           }
        }
        if(progSelection2 == 1){
-           rotCyph();
+           rotCiph();
            //does it need to return anything?
        }
        if(progSelection2 == 2){
-           //Call SubCyph Function, hopefully running its own while loop
+           //Call SubCiph Function, hopefully running its own while loop
            //does it need to return anything?
        }
 
        // once the above code is done, the program should skip the remaining code as progSelection is 1,  
-       // maybe print from file to prove the cypher worked
+       // maybe print from file to prove the cipher worked
     }
     
-    if(progSelection1 == 2){// Decypher
-       printf("\n*****\nDecypher message selected.\n");
+    if(progSelection1 == 2){// Decipher
+       printf("\n*****\nDecipher message selected.\n");
        while((progSelection2!=1)&&(progSelection2!=2)&&(progSelection2!=3)&&(progSelection2!=4)){
-          printf("Enter an integer for one of the following options:\n  1: Rotation decypher with key\n  2: Rotation decypher without key\n  3: Substitution decypher with key\n  4: Substitution decypher without key\n");
+          printf("Enter an integer for one of the following options:\n  1: Rotation decipher with key\n  2: Rotation decipher without key\n  3: Substitution decipher with key\n  4: Substitution decipher without key\n");
           scanf("%d", &progSelection2);
           if((progSelection2 < 1)||(progSelection2 > 4)){
              printf("\n\nInvalid input, try again.\n");
           }
        }
        if(progSelection2 == 1){
-           //RotDecyphKey
+           //RotDeciphKey
        }
        if(progSelection2 == 2){
-           //RotDecyphNoKey
+           //RotDeciphNoKey
        }
        if(progSelection2 == 3){
-           //SubDecyphKey
+           //SubDeciphKey
        }
        if(progSelection2 == 4){
-           //SubDecyphNoKey
+           //SubDeciphNoKey
        }
         
     }
@@ -100,10 +100,10 @@ int main(){
     
 }
 
-int rotCyph(void){
-    //1. get message to cypher (file I/O later) maybe first because getting a whole line is a pain
+int rotCiph(void){
+    //1. get message to cipher (file I/O later) maybe first because getting a whole line is a pain
     //2. ask for key, or generate random key
-    //3. cypher message, (file I/O later)
+    //3. cipher message, (file I/O later)
     //4. give confirmation, and key.
     
     char message[50];
@@ -112,7 +112,7 @@ int rotCyph(void){
     printf("Enter the message to be decrypted:\n");
     //scanf("%s", &message);
     //scanf("%[^\n]s", message); <-- doesn't work, maybe getline() or something?
-    printf("Enter the desired integer key to be used as the cypher key (range 1-25):\n");
+    printf("Enter the desired integer key to be used as the cipher key (range 1-25):\n");
     scanf("%d", &key);
     
     int i; // indexing integer for scanning/printing the characters from Test_input2 file
@@ -149,7 +149,7 @@ int rotCyph(void){
 
 
 
-// original rotation cypher code at bottom, trying sub cypher now
+// original rotation cipher code at bottom, trying sub cipher now
 /*
 
 int main(){
@@ -202,7 +202,7 @@ int main(){
                  // elements as the amount of characters in the Test_input2 file
   
   int i; // indexing integer for scanning/printing the characters from Test_input2 file
-  int key = 19;// variable for the key for rotation cypher.
+  int key = 19;// variable for the key for rotation cipher.
   //int key = 19;//after pasting the key = 7 encrypted message into the Test_input2 file, this key = 19 decrypts it.
   
   
