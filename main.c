@@ -27,10 +27,10 @@
 int main(){
     
     //function prototypes  return_type name(arguments);
-    int rotCiph(void);//rotational cipher function prototype, returns integer key
-    char subCiph(void);//substitution cipher function prototype
+    int rotCiph(void);//rotational cipher function prototype
     void rotDeciphKey(void);//rotational decipher with key function prototype
     int rotDeciphNoKey(void);//rotational decipher without key function prototype
+    char subCiph(void);//substitution cipher function prototype
     void subDeciphKey(void);//substitution decipher with key function prototype
     char subDeciphNoKey(void);//substitution cipher function prototype
     
@@ -146,6 +146,50 @@ int rotCiph(void){
     
 }
 
+int rotCiph(void){
+   //takes no argument but reads cipher key from rotCiphKey.txt ***make this***
+   //then ciphers text contained in rotationCipher.txt
+   // might not need to return anything, if it doesn't maybe just change to
+   // int subCiph (void) or void subCyph(void)
+    
+}
+
+
+void rotDeciphKey(void){
+   //takes no argument, reads rotation key from rotCiphKey.txt
+   //then deciphers text contained in rotationDecipher.txt
+   
+}
+
+int rotDeciphNoKey(void){
+   //takes no argument, helps user decipher text contained in
+   //rotationDecipher.txt, then overwrites the text in the same file??
+   //then returns the key as an integer
+
+}
+
+char subCiph(void){
+   //takes no argument but reads cipher key from subCiphKey.txt ***make this***
+   //then ciphers text contained in substitutionCipher.txt
+   // might not need to return anything, if it doesn't maybe just change to
+   // int subCiph (void) or void subCyph(void)
+   // maybe returning keys would help in describing how functions work
+    
+}
+
+void subDeciphKey(void){
+   // takes no argument, reads key from subDeciphKey.txt
+   // then deciphers text contained in substitutionDecipher.txt
+
+}
+
+char subDeciphNoKey(void){
+   // takes no argument, helps user to perform substitution decipher
+   // on the text contained in substitutionDecipher.txt then overwrites
+   // the text in the file.
+   // then returns the decryption key as a char
+    
+}
 
 
 
