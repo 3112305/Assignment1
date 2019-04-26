@@ -27,18 +27,23 @@
 int main(){
     
     //function prototypes  return_type name(arguments);
-    int rotCiph(void);//rotational cipher function prototype
-    void rotDeciphKey(void);//rotational decipher with key function prototype
-    int rotDeciphNoKey(void);//rotational decipher without key function prototype
-    char subCiph(void);//substitution cipher function prototype
-    void subDeciphKey(void);//substitution decipher with key function prototype
-    char subDeciphNoKey(void);//substitution cipher function prototype
+    int getRotKey(void);
+    void rotCiph(int key);//rotational cipher function prototype
+    void rotDeciphKey(int key);//rotational decipher with key function prototype
+   // int rotDeciphNoKey(void);//rotational decipher without key function prototype
+   // char getSubKey(void);
+   // void subCiph(char key);//substitution cipher function prototype
+   // void subDeciphKey(char key);//substitution decipher with key function prototype
+   // char subDeciphNoKey(void);//substitution cipher function prototype
+    
     
     //initialise main variables;
     //int i = 0;
     int progSelection1;
     int progSelection2;
     //int progSelection3;
+    int rotKey;
+    char subKey;
     
     
     while((progSelection1!=1)&&(progSelection1!=2)){
@@ -61,10 +66,13 @@ int main(){
           }
        }
        if(progSelection2 == 1){
-           rotCiph();
-           //does it need to return anything?
+          rotKey = getRotKey();
+          rotCiph(rotKey);
+          
        }
        if(progSelection2 == 2){
+           //subKey = getSubKey();
+           //subCiph(subKey);
            //Call SubCiph Function, hopefully running its own while loop
            //does it need to return anything?
        }
@@ -82,6 +90,7 @@ int main(){
              printf("\n\nInvalid input, try again.\n");
           }
        }
+       //****do a case statement here to demonstrate how it is used
        if(progSelection2 == 1){
            //RotDeciphKey
        }
@@ -100,7 +109,7 @@ int main(){
     
 }
 
-int rotCiph(void){
+/*void rotCiph(void){
     //1. get message to cipher (file I/O later) maybe first because getting a whole line is a pain
     //2. ask for key, or generate random key
     //3. cipher message, (file I/O later)
@@ -145,22 +154,135 @@ int rotCiph(void){
   return 0;
     
 }
+*/
 
-int rotCiph(void){
+int getRotKey(void){
+   int key;
+   FILE *keyPointer = fopen("rotCiphKey.txt","r");
+   
+   if (keyPointer != NULL){
+       fscanf(keyPointer,"%d", &key);
+       fclose(keyPointer);
+   }else{
+      printf("Key file empty or missing!\nMessage cipher failed.\n");
+   }
+   
+   return key;
+}
+
+
+
+void rotCiph(int key){
    //takes no argument but reads cipher key from rotCiphKey.txt ***make this***
    //then ciphers text contained in rotationCipher.txt
    // might not need to return anything, if it doesn't maybe just change to
    // int subCiph (void) or void subCyph(void)
+   char message[1000];
+   int i;
+   for (i = 0; i == 1000; i++){
+      message[i] = "~";
+   }
+   i = 0;
     
-}
-
-
-void rotDeciphKey(void){
-   //takes no argument, reads rotation key from rotCiphKey.txt
-   //then deciphers text contained in rotationDecipher.txt
+   FILE *cipher = fopen("rotationCipher.txt", "r");
+   while (!feof(cipher)){
+      fscanf(cipher, "%c", &message[i]);
+      i++;        
+   }
+   i = 0;
+   fclose(cipher);
    
+   for (i = 0; i <= 1000; i++){ // for loop scans and prints the letters of the file one at a time
+      if(message[i]!=126){
+         if((message[i]>=65)&&(message[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
+            message[i] = message[i]+key; // this adds the value if key to the ascii value of each letter before printing.
+         
+            if(message[i]>90){
+               message[i] = message[i]-26;
+            }                     
+         }
+      
+         if((message[i]>=97)&&(message[i]<=122)){//same as above if statement, but for a-z range
+            message[i] = message[i]-32;  // the commented-out code above was pushing letters in the a-z range to strange values,
+            message[i] = message[i]+key; // these few lines first converts letters in the a-z range to A-Z, by subtracting 32 
+                                // then adds the key before converting back to the a-z range by re-adding 32.
+            if(message[i]>90){
+              message[i] = message[i]-26;
+            }
+            message[i] = message[i]+32;
+         
+         }
+         printf("%c", message[i]);
+                 
+      }
+   }
+   
+   while(i<=1000){
+      printf("%c", message[i]);
+      i++;
+   }
+   
+   FILE *ciphered = fopen("rotationCipher.txt", "w");
+   fprintf(ciphered,"%s",message);
+   fclose(ciphered);
 }
 
+
+void rotDeciphKey(int key){
+   //takes no argument but reads cipher key from rotCiphKey.txt ***make this***
+   //then ciphers text contained in rotationCipher.txt
+   // might not need to return anything, if it doesn't maybe just change to
+   // int subCiph (void) or void subCyph(void)
+   char message[1000];
+   int i;
+   for (i = 0; i == 1000; i++){
+      message[i] = "~";
+   }
+   i = 0;
+    
+   FILE *decipher = fopen("rotationDecipher.txt", "r");
+   while (!feof(decipher)){
+      fscanf(decipher, "%c", &message[i]);
+      i++;        
+   }
+   i = 0;
+   fclose(decipher);
+   //****************do key-26 or whatever it is 
+   for (i = 0; i <= 1000; i++){ // for loop scans and prints the letters of the file one at a time
+      if(message[i]!=126){
+         if((message[i]>=65)&&(message[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
+            message[i] = message[i]+key; // this adds the value if key to the ascii value of each letter before printing.
+         
+            if(message[i]>90){
+               message[i] = message[i]-26;
+            }                     
+         }
+      
+         if((message[i]>=97)&&(message[i]<=122)){//same as above if statement, but for a-z range
+            message[i] = message[i]-32;  // the commented-out code above was pushing letters in the a-z range to strange values,
+            message[i] = message[i]+key; // these few lines first converts letters in the a-z range to A-Z, by subtracting 32 
+                                // then adds the key before converting back to the a-z range by re-adding 32.
+            if(message[i]>90){
+              message[i] = message[i]-26;
+            }
+            message[i] = message[i]+32;
+         
+         }
+         printf("%c", message[i]);
+                 
+      }
+   }
+   
+   while(i<=1000){
+      printf("%c", message[i]);
+      i++;
+   }
+   
+   FILE *ciphered = fopen("rotationCipher.txt", "w");
+   fprintf(ciphered,"%s",message);
+   fclose(ciphered);
+}
+/*
 int rotDeciphNoKey(void){
    //takes no argument, helps user decipher text contained in
    //rotationDecipher.txt, then overwrites the text in the same file??
@@ -168,7 +290,7 @@ int rotDeciphNoKey(void){
 
 }
 
-char subCiph(void){
+void subCiph(char key){
    //takes no argument but reads cipher key from subCiphKey.txt ***make this***
    //then ciphers text contained in substitutionCipher.txt
    // might not need to return anything, if it doesn't maybe just change to
@@ -177,7 +299,7 @@ char subCiph(void){
     
 }
 
-void subDeciphKey(void){
+void subDeciphKey(char key){
    // takes no argument, reads key from subDeciphKey.txt
    // then deciphers text contained in substitutionDecipher.txt
 
@@ -191,7 +313,7 @@ char subDeciphNoKey(void){
     
 }
 
-
+*/
 
 // original rotation cipher code at bottom, trying sub cipher now
 /*
