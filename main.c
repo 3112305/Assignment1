@@ -26,11 +26,15 @@ void deciphSubKey(void);
     
 // sub and rotation cipher below, attempting a menu system etc now
 int main(){
-    //initialise menu variables;
+    //initialise main variables;
     //int i = 0;
     int progSelection1;
     int progSelection2;
-    
+    //int progSelection3;
+    //char filename;
+    //char message;
+    //int rotKey;
+    //char subKey;
     
     
     // Program User Menu Start
@@ -112,7 +116,7 @@ int main(){
        //
        if(progSelection2 == 3){
            printf("\n*****\nSubstitution decipher with key selected.\n");
-		  deciphSubKey();//runs sub decipher
+		  deciphSubKey();
 		  
 		  
        }
@@ -122,7 +126,7 @@ int main(){
        //
        if(progSelection2 == 4){
            printf("\n*****\nSubstitution decipher without key selected.\n");
-		   deciphSubNoKey(); // do it
+		   //deciphSubNoKey();
        }	   
 
 		         
@@ -365,7 +369,7 @@ void deciphRotKey(void){
    messagePointer = fopen("rotationDecipher.txt","r");
    if(messagePointer != NULL){
       printf("Message:\n");
-      if(fgets(message, 1000, messagePointer)!=NULL) {
+      if( fgets (message, 1000, messagePointer)!=NULL ) {
       /* writing content to stdout */
          puts(message);
       }
@@ -443,8 +447,7 @@ void deciphRotNoKey(void){
    messagePointer = fopen("rotationDecipher.txt","r");
    if(messagePointer != NULL){
       printf("Message:\n");
-      if( fgets (message, 1000, messagePointer)!=NULL ) {
-      /* writing content to stdout */
+      if(fgets(message, 1000, messagePointer)!=NULL) {
          puts(message);
       }
    
@@ -492,35 +495,92 @@ void deciphRotNoKey(void){
 	}
 	printf("%c happened most\n", commonLetter);
   
-   if(commonLetter<=69){ //69 = F
+   if(commonLetter<=69){
       key = 69-commonLetter;     
    }
    if(commonLetter>69){
-      key = (69-commonLetter+26); 
+      key = (69-commonLetter+26); //fixes -ve rotation problem
        
    }
    printf("Key: %d\n", key);
+   
+   //END OF STATISTICAL ANALYSIS
+   
    
    //CIPHER USING KEY
    //do it with first 5 most common letters, print all and ask user if any look good
    //give real key
+   //DO CIPHER!!!!
+   int attempt;
+   int correct;
    
-   
-   
-   //change key
-   /*if(commonLetter<=69){ //69 = F
-      key = 69-commonLetter;     
+   for(attempt=1;attempt<=5;attempt++){
+      for (i = 0; i < 1000; i++){ // for loop scans and prints the letters of the file one at a time
+      
+         if((message[i]>=65)&&(message[i]<=90)){// checks if the character read is an alphabet character in the A-Z range,
+            message[i] = message[i]+key; // this adds the value if key to the ascii value of each letter before printing.
+         
+            if(message[i]>90){
+               message[i] = message[i]-26;
+            }                     
+         }
+      
+         if((message[i]>=97)&&(message[i]<=122)){//same as above if statement, but for a-z range
+            message[i] = message[i]-32;  // the commented-out code above was pushing letters in the a-z range to strange values,
+            message[i] = message[i]+key; // these few lines first converts letters in the a-z range to A-Z, by subtracting 32 
+                                // then adds the key before converting back to the a-z range by re-adding 32.
+            if(message[i]>90){
+              message[i] = message[i]-26;
+            }
+            message[i] = message[i]+32;
+         
+         }
+         if(message[i] == 126){
+             i = 1000;
+         }
+     
+     
    }
-   if(commonLetter>69){
-      key = (69-commonLetter+26); 
+   printf("Attempt %d: ", attempt);
+   for(i=0;i<30;i++){
+       printf("%c", message[i]);
+             
+   }
+   
+   
+   //update key 'E', 'T', 'A', 'O', 'I'
+   // it starts referenced to E 
+   if(commonLetter == 79){
+       key = key-6; // make it next letter
        
    }
-   printf("Key: %d\n", key);
-   */
+   if(commonLetter == 65){
+       key = key + 14; // make it next letter
+       
+   }
+   if(commonLetter == 84){
+       key = key - 19; // make it next letter
+       
+   }
+   if(commonLetter == 69){
+       key = key + 15;// make it next letter
+       
+   }
+   //end update key
    
+
+  }
+  
+  printf("which looks good?\n");
+   //end cipher
    
    printf("\n");
-}
+   
+   
+   }
+   
+  // printf("\n");
+
 
 void deciphSubKey(void){
    // *****************
@@ -535,6 +595,7 @@ void deciphSubKey(void){
    // close message file
    
    // etc
+   
    char key[26];
    FILE *keyPointer = fopen("subCiphKey.txt","r"); // open key file
    
@@ -623,7 +684,56 @@ void deciphSubNoKey(void){
    // print key
    // etc
    
+   
+   
+   
 }
+
+
+ /*
+ int waitForUser(void){ // return number of times fuction has been called with static int
+   
+   
+ }
+ */
+
+
+
+
+
+   //change key
+   /*if(commonLetter<=69){ //69 = F
+      key = 69-commonLetter;     
+   }
+   if(commonLetter>69){
+      key = (69-commonLetter+26); 
+       
+   }
+   printf("Key: %d\n", key);
+   */
+   
+   
+   
+
+
+
+/*
+void deciphSubNoKey(void){
+   // *****************
+   // open message file
+   // read message from file
+   // attempt statistical analysis
+   // ask user for confirmation
+   // maybe implement easy way for user to change letters in key
+   // implement reset message to original (just read file again)
+   // print deciphered message
+   // write deciphered message to file
+   // print key
+   // etc
+   
+}
+*/
+
 
 
  /*
